@@ -14,19 +14,19 @@ public class OrderServiceClient {
 		if ("-addCustomer".equalsIgnoreCase(args[0])) {
 			validateArgs(args, 2, new int[] {});
 
-			// [-addCustomer] OrderServiceClient -addClient <name> ...
+			// [-addCustomer] OrderServiceClient -addCustomer <name> ...
 
 			try {
-				Long clientId = null; // Invoke method from the clientOrderService
-				System.out.println("Client " + clientId + " " + "created sucessfully");
+				Long customerId = null; // Invoke method from the clientOrderService
+				System.out.println("Customer " + customerId + " " + "created sucessfully");
 			} catch (Exception ex) {
 				ex.printStackTrace(System.err);
 			}
 
-		} else if ("-findClient".equalsIgnoreCase(args[0])) {
+		} else if ("-findCustomer".equalsIgnoreCase(args[0])) {
 			validateArgs(args, 2, new int[] { 1 });
 
-			// [-findClient] ClientOrderServiceClient -findClient <clientId>
+			// [-findCustomer] OrderServiceClient -findCustomer <dni>
 
 			try {
 				// ...
@@ -58,8 +58,8 @@ public class OrderServiceClient {
 
 	public static void printUsage() {
 		System.err.println(
-				"Usage:\n" + "    [-addClient]    OrderServiceClient -addClient <name> ...\n" +
-		                     "    [-findClient]   OrderServiceClient -findClient <clientId>\n" +
+				"Usage:\n" + "    [-addCustomer]    OrderServiceClient -addCustomer <name> ...\n" +
+		                     "    [-findCustomer]   OrderServiceClient -findCustomer <customerId>\n" +
 						     "    ...\n");
 	}
 

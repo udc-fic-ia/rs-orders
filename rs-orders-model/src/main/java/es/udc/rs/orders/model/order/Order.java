@@ -1,36 +1,35 @@
 package es.udc.rs.orders.model.order;
 
 import java.util.Calendar;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Order {
 
 	private Long orderId;
 	private Long customerId;
 	private Calendar orderDate;
-	private Long productId;
-	private Long quantity;
-	private Double price;
+	private List<OrderLine> orderLines;
 	private OrderStatus orderStatus;
 
-	public Order(Long customerId, Long productId, Long quantity, Double price) {
+	public Order(Long customerId, List<OrderLine> orderLines, OrderStatus orderStatus) {
 		super();
 		this.customerId = customerId;
-		this.productId = productId;
-		this.quantity = quantity;
-		this.price = price;
-	}
-
-	public Order(Long orderId, Long customerId, Calendar orderDate, Long productId, Long quantity, Double price,
-			OrderStatus orderStatus) {
-		this(customerId, productId, quantity, price);
-		this.orderId = orderId;
-		this.orderDate = orderDate;
+		this.orderLines = orderLines;
 		this.orderStatus = orderStatus;
 	}
 
+	public Order(Long orderId, Long customerId, Calendar orderDate, List<OrderLine> orderLines,
+			OrderStatus orderStatus) {
+		this(customerId, orderLines, orderStatus);
+		this.orderId = orderId;
+		this.orderDate = orderDate;
+	}
+
 	public Order(Order order) {
-		this(order.orderId, order.customerId, order.orderDate, order.productId, order.quantity, order.price,
-				order.orderStatus);
+		this(order.getOrderId(), order.getCustomerId(), order.getOrderDate(),
+				order.getOrderLines().stream().map(orderLine -> new OrderLine(orderLine)).collect(Collectors.toList()),
+				order.getOrderStatus());
 	}
 
 	public Long getOrderId() {
@@ -57,28 +56,12 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public Long getProductId() {
-		return productId;
+	public List<OrderLine> getOrderLines() {
+		return orderLines;
 	}
 
-	public void setProductId(Long productId) {
-		this.productId = productId;
-	}
-
-	public Long getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Long quantity) {
-		this.quantity = quantity;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
+	public void setOrderLines(List<OrderLine> orderLines) {
+		this.orderLines = orderLines;
 	}
 
 	public OrderStatus getOrderStatus() {
@@ -87,6 +70,12 @@ public class Order {
 
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", customerId=" + customerId + ", orderDate=" + orderDate + ", orderLines="
+				+ orderLines + ", orderStatus=" + orderStatus + "]";
 	}
 
 }

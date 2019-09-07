@@ -4,13 +4,12 @@ import java.util.Calendar;
 
 public class Customer {
 
-    private Long customerId;
-    private String name;
-    private String dni;
-    private String address;
-    private Calendar creationDate;
-    private String email;
-    
+	private Long customerId;
+	private String name;
+	private String dni;
+	private String address;
+	private Calendar creationDate;
+	private String email;
 
 	public Customer(String name, String dni, String address, String email) {
 		super();
@@ -20,6 +19,16 @@ public class Customer {
 		this.email = email;
 	}
 
+	public Customer(Long customerId, String name, String dni, String address, Calendar creationDate, String email) {
+		this(name, dni, address, email);
+		this.customerId = customerId;
+		this.creationDate = creationDate;
+	}
+
+	public Customer(Customer customer) {
+		this(customer.getCustomerId(), customer.getName(), customer.getDni(), customer.getAddress(), customer.getCreationDate(),
+				customer.getEmail());
+	}
 
 	public Long getCustomerId() {
 		return customerId;
@@ -67,6 +76,12 @@ public class Customer {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [customerId=" + customerId + ", name=" + name + ", dni=" + dni + ", address=" + address
+				+ ", creationDate=" + creationDate + ", email=" + email + "]";
 	}
 
 }
