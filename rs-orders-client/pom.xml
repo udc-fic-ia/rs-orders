@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>rs-orders-client</artifactId>
 	<packaging>jar</packaging>
-	<name>RS-orders Client Subsystem</name>
+	<name>RS-Orders Client Subsystem</name>
 
 	<dependencies>
 		<dependency>
@@ -22,19 +22,21 @@
 			<artifactId>jersey-client</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-jaxb</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.glassfish.jersey.inject</groupId>
 			<artifactId>jersey-hk2</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-jaxb</artifactId>
+			<artifactId>jersey-media-json-jackson</artifactId>
 		</dependency>
-		<!-- Uncomment to use Moxy 
-        <dependency>
-        	<groupId>org.glassfish.jersey.media</groupId>
-    	  	<artifactId>jersey-media-json-jettison</artifactId>
-        </dependency> 
-		-->
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -66,6 +68,13 @@
 						</configuration>
 					</execution>
 				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>com.sun.activation</groupId>
+						<artifactId>jakarta.activation</artifactId>
+						<version>${jakartaActivation.version}</version>
+					</dependency>
+				</dependencies>								
 			</plugin>
 			-->
 		</plugins>

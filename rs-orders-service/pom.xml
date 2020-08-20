@@ -11,7 +11,7 @@
     </parent>
     <artifactId>rs-orders-service</artifactId>
     <packaging>war</packaging>
-    <name>RS-orders Service Subsystem</name>
+    <name>RS-Orders Service Subsystem</name>
 	
     <dependencies>
         <dependency>
@@ -26,24 +26,18 @@
             <groupId>org.glassfish.jersey.inject</groupId>
             <artifactId>jersey-hk2</artifactId>
         </dependency>
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-core</artifactId>
-		</dependency>
-		<!-- Uncomment to use Moxy 
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
-    	    <artifactId>jersey-media-json-jettison</artifactId>
-        </dependency> 
-		-->
+            <artifactId>jersey-media-json-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
     </dependencies>
     
     <build>
@@ -69,12 +63,18 @@
                 </executions>
                 <configuration>
 					<sources>
-						<source>src/main/java/...</source>
-						<source>src/main/java/...</source>
+						<source>src/main/java/es/udc/rs/deliveries/jaxrs/dto</source>
 					</sources>
                 </configuration>
-            </plugin> -->
-                        
+                <dependencies>
+                   <dependency>
+                       <groupId>com.sun.activation</groupId>
+                       <artifactId>jakarta.activation</artifactId>
+                       <version>${jakartaActivation.version}</version>
+                   </dependency>
+                </dependencies>
+            </plugin>
+            -->
         </plugins>
     </build>
 </project>

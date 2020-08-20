@@ -7,7 +7,7 @@
 	<artifactId>rs-orders</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.0</version>
-	<name>RS-orders Project</name>
+	<name>RS-Orders Project</name>
 
 	<modules>
 		<module>rs-orders-model</module>
@@ -24,19 +24,24 @@
 
 		<!-- Package versions (except those defined in "profiles" section) -->
 		<jdom2.version>2.0.6</jdom2.version>
-		<jersey.version>2.26</jersey.version>
-		<jaxb.version>2.3.0</jaxb.version>
-		<wsUtil.version>3.2.4</wsUtil.version>
-		<junit.version>4.12</junit.version>
+		<jersey.version>2.31</jersey.version>
+		<jackson.version>2.11.0</jackson.version>
+		<jaxb.version>2.3.3</jaxb.version>
+		<junit.version>5.6.2</junit.version>
+		<jakartaActivation.version>1.2.1</jakartaActivation.version>
+		<slf4j.version>1.7.9</slf4j.version>
+		<wsUtil.version>3.4.0</wsUtil.version>
 
 		<!-- Plugin versions -->
-		<mavenCompilerPlugin.version>3.7.0</mavenCompilerPlugin.version>
-		<mavenResourcesPlugin.version>3.1.0</mavenResourcesPlugin.version>
-		<execMavenPlugin.version>1.6.0</execMavenPlugin.version>
-		<jettyMavenPlugin>9.4.9.v20180320</jettyMavenPlugin>
+	  <compilerMavenPlugin.version>3.8.1</compilerMavenPlugin.version>
+		<resourcesMavenPlugin.version>3.1.0</resourcesMavenPlugin.version>
+		<execMavenPlugin.version>3.0.0</execMavenPlugin.version>
+		<jettyMavenPlugin>9.4.28.v20200408</jettyMavenPlugin>
 		<jaxwsMavenPlugin>2.5</jaxwsMavenPlugin>
 		<jaxb2MavenPlugin>2.4</jaxb2MavenPlugin>
-		<propertiesMavenPlugin>1.0.0</propertiesMavenPlugin>
+		<surefireMavenPlugin.version>2.22.2</surefireMavenPlugin.version>
+		<assemblyMavenPlugin.version>3.3.0</assemblyMavenPlugin.version>
+		<enforcerMavenPlugin.version>1.4.1</enforcerMavenPlugin.version>
 	</properties>
 
 	<!-- ========================================================== -->
@@ -75,27 +80,23 @@
 	<!-- Dependency management -->
 	<dependencyManagement>
 		<dependencies>
+			<!-- JAF (javax.activation) -->
+			<dependency>
+				<groupId>com.sun.activation</groupId>
+				<artifactId>jakarta.activation</artifactId>
+				<version>${jakartaActivation.version}</version>
+			</dependency>
 			<!-- JUnit -->
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
 			</dependency>
-			<!-- JAXB versions necessary for the Jersey JSON support to work -->
-			<dependency>
-				<groupId>javax.xml.bind</groupId>
-				<artifactId>jaxb-api</artifactId>
-				<version>${jaxb.version}</version>
-			</dependency>
+			<!-- JAXB (java.xml.bind)  -->
 			<dependency>
 				<groupId>com.sun.xml.bind</groupId>
 				<artifactId>jaxb-impl</artifactId>
-				<version>${jaxb.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.sun.xml.bind</groupId>
-				<artifactId>jaxb-core</artifactId>
 				<version>${jaxb.version}</version>
 			</dependency>
 			<!-- WS-JavaExamples Util -->
@@ -136,15 +137,20 @@
 				<groupId>org.glassfish.jersey.media</groupId>
 				<artifactId>jersey-media-jaxb</artifactId>
 				<version>${jersey.version}</version>
-			</dependency>
-			<!-- Jersey JSON support -->
-			<!-- Jettison -->
-     	<dependency>
-        <groupId>org.glassfish.jersey.media</groupId>
-    	  <artifactId>jersey-media-json-jettison</artifactId>
+			</dependency> 
+			<!-- Jersey JSON support / Jackson -->
+			<dependency>
+				<groupId>org.glassfish.jersey.media</groupId>
+				<artifactId>jersey-media-json-jackson</artifactId>
 				<version>${jersey.version}</version>
-      </dependency>
-			<!-- orders Model -->
+			</dependency>
+			<!-- SLF4J -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+			<!-- Orders Model -->
 			<dependency>
 				<groupId>es.udc.rs.orders</groupId>
 				<artifactId>rs-orders-model</artifactId>
@@ -205,24 +211,33 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${mavenCompilerPlugin.version}</version>
+				<version>${compilerMavenPlugin.version}</version>
 				<configuration>
 					<verbose>true</verbose>
-					<source>1.8</source>
-					<target>1.8</target>
+					<!-- Source & target are not necessary, but intelliJ depends on it to set the Java compiler settings  -->
+					<source>11</source>
+					<target>11</target>					
+					<release>11</release>
 					<encoding>${project.build.sourceEncoding}</encoding>
 					<showDeprecation>true</showDeprecation>
 					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
 
-			<!-- ========================================================== -->
+						<!-- ========================================================== -->
 			<!-- Resources plugin -->
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>${mavenResourcesPlugin.version}</version>
+				<version>${resourcesMavenPlugin.version}</version>
+			</plugin>
+
+			<!-- ========================================================== -->
+			<!-- Surefire plugin -->
+			<!-- Default version does not support JUnit 5. -->
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefireMavenPlugin.version}</version>
 			</plugin>
 
   			<!-- ========================================================== -->
@@ -232,11 +247,13 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>${execMavenPlugin.version}</version>
 			</plugin>
+
 			<!-- ========================================================== -->
 			<!-- Assembly configuration -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${assemblyMavenPlugin.version}</version>
 				<configuration>
 					<descriptors>
 						<descriptor>src/main/assembly/src.xml</descriptor>
@@ -252,9 +269,9 @@
 				<version>${jettyMavenPlugin}</version>
 
 				<configuration>
-                    <httpConnector>
-                        <port>7070</port>
-                    </httpConnector>
+					<httpConnector>
+						<port>7070</port>
+					</httpConnector>
 					<contextXml>target/jetty/jetty-context.xml</contextXml>
 					<webAppConfig>
 						<contextPath>/${project.artifactId}</contextPath>
@@ -265,83 +282,29 @@
 			</plugin>
 			
 			<!-- ========================================================== -->
-			<!-- Properties configuration -->
-			<!-- This plugin is used to ensure that the usage of the maven-jaxb2-plugin 
-				is JDK 8 compatible in absence of a fix for https://java.net/jira/browse/MAVEN_JAXB2_PLUGIN-80. 
-				Mojo's JAXB-2 Maven Plugin fails (xjc goal) with JDK 1.8 because JAXP has 
-				been upgraded to 1.5, and it introduces access issues on external resources. 
-				It can be solved setting the value of the system property javax.xml.accessExternalSchema 
-				to a value that allows accessing to external file resources (see https://jira.codehaus.org/browse/MJAXB-89) -->
+			<!-- Enforcer configuration -->
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>properties-maven-plugin</artifactId>
-				<version>${propertiesMavenPlugin}</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>${enforcerMavenPlugin.version}</version>
 				<executions>
 					<execution>
-						<id>set-additional-system-properties</id>
+						<id>enforce-maven</id>
 						<goals>
-							<goal>set-system-properties</goal>
+							<goal>enforce</goal>
 						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+								<version>3.0.5</version>
+								</requireMavenVersion>
+							</rules>    
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<properties>
-						<property>
-							<name>javax.xml.accessExternalSchema</name>
-							<value>file,http</value>
-						</property>
-					</properties>
-				</configuration>
 			</plugin>
 
 		</plugins>
-
-		<!-- ========================================================== -->
-		<!-- Prevent m2eclipse plugin to mark projects as invalid -->
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.codehaus.mojo</groupId>
-										<artifactId>jaxws-maven-plugin</artifactId>
-										<versionRange>[1.0.0,)</versionRange>
-										<goals>
-											<goal>wsgen</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-								<!-- Add the goal set-system-properties of the plugin properties-maven-plugin 
-									to be executed in the m2eclipse lifecycle -->
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.codehaus.mojo</groupId>
-										<artifactId>properties-maven-plugin</artifactId>
-										<versionRange>[${propertiesMavenPlugin},)</versionRange>
-										<goals>
-											<goal>set-system-properties</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<execute />
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-
-			</plugins>
-		</pluginManagement>
 
 	</build>
 

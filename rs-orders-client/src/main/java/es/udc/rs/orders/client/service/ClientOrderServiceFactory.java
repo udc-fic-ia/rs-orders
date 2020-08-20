@@ -15,7 +15,7 @@ public class ClientOrderServiceFactory {
 		try {
 			String serviceClassName = ConfigurationParametersManager.getParameter(CLASS_NAME_PARAMETER);
 			Class serviceClass = Class.forName(serviceClassName);
-			return (ClientOrderService) serviceClass.newInstance();
+			return (ClientOrderService) serviceClass.getDeclaredConstructor().newInstance();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
