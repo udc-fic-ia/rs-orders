@@ -2,11 +2,11 @@ package es.udc.rs.orders.jaxrs.filter;
 
 import org.glassfish.jersey.message.internal.ReaderWriter;
 
-import javax.annotation.Priority;
-import javax.ws.rs.container.*;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.ext.Provider;
+import jakarta.annotation.Priority;
+import jakarta.ws.rs.container.*;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.UriInfo;
+import jakarta.ws.rs.ext.Provider;
 import java.io.*;
 import java.util.List;
 

@@ -24,24 +24,24 @@
 
 		<!-- Package versions (except those defined in "profiles" section) -->
 		<jdom2.version>2.0.6</jdom2.version>
-		<jersey.version>2.31</jersey.version>
-		<jackson.version>2.11.0</jackson.version>
-		<jaxb.version>2.3.3</jaxb.version>
-		<junit.version>5.6.2</junit.version>
-		<jakartaActivation.version>1.2.1</jakartaActivation.version>
-		<slf4j.version>1.7.9</slf4j.version>
-		<wsUtil.version>3.4.0</wsUtil.version>
+		<jersey.version>3.0.2</jersey.version>
+		<jackson.version>2.12.3</jackson.version>
+		<jaxb.version>3.0.1</jaxb.version>
+		<junit.version>5.7.2</junit.version>
+		<jakartaActivation.version>2.0.1</jakartaActivation.version>
+		<jakartaWsRs.version>3.0.0</jakartaWsRs.version>
+		<slf4j.version>1.7.30</slf4j.version>
+		<wsUtil.version>3.5.0-jakarta</wsUtil.version>
 
 		<!-- Plugin versions -->
 	  <compilerMavenPlugin.version>3.8.1</compilerMavenPlugin.version>
-		<resourcesMavenPlugin.version>3.1.0</resourcesMavenPlugin.version>
+		<resourcesMavenPlugin.version>3.2.0</resourcesMavenPlugin.version>
 		<execMavenPlugin.version>3.0.0</execMavenPlugin.version>
-		<jettyMavenPlugin>9.4.28.v20200408</jettyMavenPlugin>
-		<jaxwsMavenPlugin>2.5</jaxwsMavenPlugin>
-		<jaxb2MavenPlugin>2.4</jaxb2MavenPlugin>
+		<jettyMavenPlugin>11.0.6</jettyMavenPlugin>
+		<jaxb2MavenPlugin>2.5.0</jaxb2MavenPlugin>
 		<surefireMavenPlugin.version>2.22.2</surefireMavenPlugin.version>
 		<assemblyMavenPlugin.version>3.3.0</assemblyMavenPlugin.version>
-		<enforcerMavenPlugin.version>1.4.1</enforcerMavenPlugin.version>
+		<enforcerMavenPlugin.version>3.0.0</enforcerMavenPlugin.version>
 	</properties>
 	
 	<!-- ========================================================== -->
@@ -53,10 +53,10 @@
 	<!-- Dependency management -->
 	<dependencyManagement>
 		<dependencies>
-			<!-- JAF (javax.activation) -->
+			<!-- JAF (jakarta.activation) -->
 			<dependency>
-				<groupId>com.sun.activation</groupId>
-				<artifactId>jakarta.activation</artifactId>
+				<groupId>jakarta.activation</groupId>
+				<artifactId>jakarta.activation-api</artifactId>
 				<version>${jakartaActivation.version}</version>
 			</dependency>
 			<!-- JUnit -->
@@ -67,6 +67,11 @@
 				<scope>test</scope>
 			</dependency>
 			<!-- JAXB (java.xml.bind)  -->
+			<dependency>
+				<groupId>jakarta.xml.bind</groupId>
+				<artifactId>jakarta.xml.bind-api</artifactId>
+				<version>${jaxb.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.sun.xml.bind</groupId>
 				<artifactId>jaxb-impl</artifactId>
@@ -84,7 +89,11 @@
 				<artifactId>jdom2</artifactId>
 				<version>${jdom2.version}</version>
 			</dependency>
-			<!-- Jersey server -->
+			<dependency>
+				<groupId>jakarta.ws.rs</groupId>
+				<artifactId>jakarta.ws.rs-api</artifactId>
+				<version>${jakartaWsRs.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.glassfish.jersey.containers</groupId>
 				<artifactId>jersey-container-servlet</artifactId>
@@ -246,11 +255,11 @@
 						<port>7070</port>
 					</httpConnector>
 					<contextXml>target/jetty/jetty-context.xml</contextXml>
-					<webAppConfig>
+					<webApp>
 						<contextPath>/${project.artifactId}</contextPath>
 						<jettyEnvXml>target/jetty/jetty-env.xml</jettyEnvXml>
-					</webAppConfig>
-					<reload>manual</reload>
+					</webApp>
+					<scan>0</scan>
 				</configuration>
 			</plugin>
 			
@@ -269,7 +278,7 @@
 						<configuration>
 							<rules>
 								<requireMavenVersion>
-								<version>3.0.5</version>
+								<version>3.5.0</version>
 								</requireMavenVersion>
 							</rules>    
 						</configuration>

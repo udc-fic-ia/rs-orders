@@ -1,6 +1,6 @@
 package es.udc.rs.orders.client.service.rest;
 
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MediaType;
 
 public class RestClientOrderServiceXml extends RestClientOrderService {
 	
