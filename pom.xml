@@ -34,7 +34,7 @@
 		<wsUtil.version>3.5.0-jakarta</wsUtil.version>
 
 		<!-- Plugin versions -->
-	  <compilerMavenPlugin.version>3.8.1</compilerMavenPlugin.version>
+		<compilerMavenPlugin.version>3.8.1</compilerMavenPlugin.version>
 		<resourcesMavenPlugin.version>3.2.0</resourcesMavenPlugin.version>
 		<execMavenPlugin.version>3.0.0</execMavenPlugin.version>
 		<jettyMavenPlugin>11.0.6</jettyMavenPlugin>
