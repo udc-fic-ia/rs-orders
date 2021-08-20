@@ -1,5 +1,6 @@
 package es.udc.rs.orders.model.customer;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 public class Customer {
@@ -8,7 +9,7 @@ public class Customer {
 	private String name;
 	private String dni;
 	private String address;
-	private Calendar creationDate;
+	private LocalDateTime creationDate;
 	private String email;
 
 	public Customer(String name, String dni, String address, String email) {
@@ -19,7 +20,7 @@ public class Customer {
 		this.email = email;
 	}
 
-	public Customer(Long customerId, String name, String dni, String address, Calendar creationDate, String email) {
+	public Customer(Long customerId, String name, String dni, String address, LocalDateTime creationDate, String email) {
 		this(name, dni, address, email);
 		this.customerId = customerId;
 		this.creationDate = creationDate;
@@ -62,11 +63,11 @@ public class Customer {
 		this.address = address;
 	}
 
-	public Calendar getCreationDate() {
+	public LocalDateTime getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(Calendar creationDate) {
+	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
 	}
 

@@ -1,6 +1,6 @@
 package es.udc.rs.orders.model.order;
 
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,7 +8,7 @@ public class Order {
 
 	private Long orderId;
 	private Long customerId;
-	private Calendar orderDate;
+	private LocalDateTime orderDate;
 	private List<OrderLine> orderLines;
 	private OrderStatus orderStatus;
 
@@ -19,7 +19,7 @@ public class Order {
 		this.orderStatus = orderStatus;
 	}
 
-	public Order(Long orderId, Long customerId, Calendar orderDate, List<OrderLine> orderLines,
+	public Order(Long orderId, Long customerId, LocalDateTime orderDate, List<OrderLine> orderLines,
 			OrderStatus orderStatus) {
 		this(customerId, orderLines, orderStatus);
 		this.orderId = orderId;
@@ -48,11 +48,11 @@ public class Order {
 		this.customerId = customerId;
 	}
 
-	public Calendar getOrderDate() {
+	public LocalDateTime getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(Calendar orderDate) {
+	public void setOrderDate(LocalDateTime orderDate) {
 		this.orderDate = orderDate;
 	}
 
