@@ -22,26 +22,26 @@
 		<!-- Encoding -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<!-- Package versions (except those defined in "profiles" section) -->
-		<jdom2.version>2.0.6</jdom2.version>
-		<jersey.version>3.0.2</jersey.version>
-		<jackson.version>2.12.3</jackson.version>
-		<jaxb.version>3.0.1</jaxb.version>
-		<junit.version>5.7.2</junit.version>
-		<jakartaActivation.version>2.0.1</jakartaActivation.version>
-		<jakartaWsRs.version>3.0.0</jakartaWsRs.version>
-		<slf4j.version>1.7.30</slf4j.version>
-		<wsUtil.version>3.5.0-jakarta</wsUtil.version>
+		<jdom2.version>2.0.6.1</jdom2.version>
+		<jersey.version>3.0.5</jersey.version>
+		<jackson.version>2.13.3</jackson.version>
+		<jaxb.version>4.0.0</jaxb.version>
+		<junit.version>5.8.2</junit.version>
+		<jakartaActivation.version>2.1.0</jakartaActivation.version>
+		<jakartaWsRs.version>3.1.0</jakartaWsRs.version>
+		<slf4j.version>1.7.36</slf4j.version>
+		<wsUtil.version>3.6.0</wsUtil.version>
 
 		<!-- Plugin versions -->
-		<compilerMavenPlugin.version>3.8.1</compilerMavenPlugin.version>
+		<compilerMavenPlugin.version>3.10.1</compilerMavenPlugin.version>
 		<resourcesMavenPlugin.version>3.2.0</resourcesMavenPlugin.version>
 		<execMavenPlugin.version>3.0.0</execMavenPlugin.version>
-		<jettyMavenPlugin>11.0.6</jettyMavenPlugin>
-		<jaxb2MavenPlugin>2.5.0</jaxb2MavenPlugin>
+		<jettyMavenPlugin>11.0.9</jettyMavenPlugin>
+		<jaxb2MavenPlugin>3.1.0</jaxb2MavenPlugin>
 		<surefireMavenPlugin.version>2.22.2</surefireMavenPlugin.version>
 		<assemblyMavenPlugin.version>3.3.0</assemblyMavenPlugin.version>
 		<enforcerMavenPlugin.version>3.0.0</enforcerMavenPlugin.version>
+		<warMavenPlugin.version>3.3.2</warMavenPlugin.version>
 	</properties>
 	
 	<!-- ========================================================== -->
@@ -197,21 +197,29 @@
 				<configuration>
 					<verbose>true</verbose>
 					<!-- Source & target are not necessary, but intelliJ depends on it to set the Java compiler settings  -->
-					<source>11</source>
-					<target>11</target>					
-					<release>11</release>
+					<source>17</source>
+					<target>17</target>
+					<release>17</release>
 					<encoding>${project.build.sourceEncoding}</encoding>
 					<showDeprecation>true</showDeprecation>
 					<showWarnings>true</showWarnings>
 				</configuration>
 			</plugin>
 
-						<!-- ========================================================== -->
+			<!-- ========================================================== -->
 			<!-- Resources plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>${resourcesMavenPlugin.version}</version>
+			</plugin>
+
+			<!-- ========================================================== -->
+			<!-- War plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${warMavenPlugin.version}</version>
 			</plugin>
 
 			<!-- ========================================================== -->
