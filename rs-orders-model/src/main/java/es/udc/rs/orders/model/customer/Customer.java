@@ -1,7 +1,6 @@
 package es.udc.rs.orders.model.customer;
 
 import java.time.LocalDateTime;
-import java.util.Calendar;
 
 public class Customer {
 
