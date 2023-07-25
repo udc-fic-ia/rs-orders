@@ -23,25 +23,26 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<jdom2.version>2.0.6.1</jdom2.version>
-		<jersey.version>3.0.5</jersey.version>
-		<jackson.version>2.13.3</jackson.version>
-		<jaxb.version>4.0.0</jaxb.version>
-		<junit.version>5.8.2</junit.version>
-		<jakartaActivation.version>2.1.0</jakartaActivation.version>
-		<jakartaWsRs.version>3.1.0</jakartaWsRs.version>
-		<slf4j.version>1.7.36</slf4j.version>
-		<wsUtil.version>3.6.0</wsUtil.version>
+		<jersey.version>3.1.2</jersey.version>
+		<jackson.version>2.15.1</jackson.version>
+		<jaxb.version>4.0.3</jaxb.version>
+		<jakarta.jaxb.version>4.0.0</jakarta.jaxb.version>
+		<junit.version>5.9.3</junit.version>
+		<jakarta.activation.version>2.1.2</jakarta.activation.version>
+		<jakarta.ws.rs.version>3.1.0</jakarta.ws.rs.version>
+		<slf4j.version>2.0.7</slf4j.version>
+		<wsutil.version>3.7.0</wsutil.version>
 
 		<!-- Plugin versions -->
-		<compilerMavenPlugin.version>3.10.1</compilerMavenPlugin.version>
-		<resourcesMavenPlugin.version>3.2.0</resourcesMavenPlugin.version>
-		<execMavenPlugin.version>3.0.0</execMavenPlugin.version>
-		<jettyMavenPlugin>11.0.9</jettyMavenPlugin>
+		<compilerMavenPlugin.version>3.11.0</compilerMavenPlugin.version>
+		<resourcesMavenPlugin.version>3.3.1</resourcesMavenPlugin.version>
+		<execMavenPlugin.version>3.1.0</execMavenPlugin.version>
+		<jettyMavenPlugin>11.0.15</jettyMavenPlugin>
 		<jaxb2MavenPlugin>3.1.0</jaxb2MavenPlugin>
-		<surefireMavenPlugin.version>2.22.2</surefireMavenPlugin.version>
-		<assemblyMavenPlugin.version>3.3.0</assemblyMavenPlugin.version>
-		<enforcerMavenPlugin.version>3.0.0</enforcerMavenPlugin.version>
-		<warMavenPlugin.version>3.3.2</warMavenPlugin.version>
+		<surefireMavenPlugin.version>3.1.2</surefireMavenPlugin.version>
+		<assemblyMavenPlugin.version>3.6.0</assemblyMavenPlugin.version>
+		<enforcerMavenPlugin.version>3.3.0</enforcerMavenPlugin.version>
+		<warMavenPlugin.version>3.4.0</warMavenPlugin.version>
 	</properties>
 	
 	<!-- ========================================================== -->
@@ -57,7 +58,7 @@
 			<dependency>
 				<groupId>jakarta.activation</groupId>
 				<artifactId>jakarta.activation-api</artifactId>
-				<version>${jakartaActivation.version}</version>
+				<version>${jakarta.activation.version}</version>
 			</dependency>
 			<!-- JUnit -->
 			<dependency>
@@ -70,7 +71,7 @@
 			<dependency>
 				<groupId>jakarta.xml.bind</groupId>
 				<artifactId>jakarta.xml.bind-api</artifactId>
-				<version>${jaxb.version}</version>
+				<version>${jakarta.jaxb.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.sun.xml.bind</groupId>
@@ -81,7 +82,7 @@
 			<dependency>
 				<groupId>es.udc.ws</groupId>
 				<artifactId>ws-util</artifactId>
-				<version>${wsUtil.version}</version>
+				<version>${wsutil.version}</version>
 			</dependency>
 			<!-- JDOM2 -->
 			<dependency>
@@ -92,7 +93,7 @@
 			<dependency>
 				<groupId>jakarta.ws.rs</groupId>
 				<artifactId>jakarta.ws.rs-api</artifactId>
-				<version>${jakartaWsRs.version}</version>
+				<version>${jakarta.ws.rs.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.glassfish.jersey.containers</groupId>
@@ -236,6 +237,11 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>${execMavenPlugin.version}</version>
+				<configuration>
+					<!-- From jersey 3.1.2, sometimes client application executed with exec plugin finished
+					     with error due to not be able to stop all threads -->
+					<cleanupDaemonThreads>false</cleanupDaemonThreads>
+				</configuration>
 			</plugin>
 
 			<!-- ========================================================== -->
