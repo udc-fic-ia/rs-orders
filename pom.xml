@@ -23,25 +23,25 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<jdom2.version>2.0.6.1</jdom2.version>
-		<jersey.version>4.0.0-M1</jersey.version>
-		<jackson.version>2.17.2</jackson.version>
+		<jersey.version>4.0.0-M2</jersey.version>
+		<jackson.version>2.19.2</jackson.version>
 		<jaxb.version>4.0.5</jaxb.version>
 		<jakarta.jaxb.version>4.0.2</jakarta.jaxb.version>
-		<junit.version>5.10.3</junit.version>
+		<junit.version>5.13.4</junit.version>
 		<jakarta.activation.version>2.1.3</jakarta.activation.version>
 		<jakarta.ws.rs.version>4.0.0</jakarta.ws.rs.version>
-		<slf4j.version>2.0.13</slf4j.version>
-		<wsutil.version>3.8.0</wsutil.version>
+		<slf4j.version>2.0.17</slf4j.version>
+		<wsutil.version>3.9.0</wsutil.version>
 
 		<!-- Plugin versions -->
-		<compilerMavenPlugin.version>3.13.0</compilerMavenPlugin.version>
+		<compilerMavenPlugin.version>3.14.0</compilerMavenPlugin.version>
 		<resourcesMavenPlugin.version>3.3.1</resourcesMavenPlugin.version>
-		<execMavenPlugin.version>3.3.0</execMavenPlugin.version>
-		<jettyMavenPlugin>11.0.22</jettyMavenPlugin>
-		<jaxb2MavenPlugin>3.1.0</jaxb2MavenPlugin>
-		<surefireMavenPlugin.version>3.3.0</surefireMavenPlugin.version>
+		<execMavenPlugin.version>3.5.1</execMavenPlugin.version>
+		<jettyMavenPlugin>11.0.25</jettyMavenPlugin>
+		<jaxb2MavenPlugin>3.3.0</jaxb2MavenPlugin>
+		<surefireMavenPlugin.version>3.5.3</surefireMavenPlugin.version>
 		<assemblyMavenPlugin.version>3.7.1</assemblyMavenPlugin.version>
-		<enforcerMavenPlugin.version>3.3.0</enforcerMavenPlugin.version>
+		<enforcerMavenPlugin.version>3.6.1</enforcerMavenPlugin.version>
 		<warMavenPlugin.version>3.4.0</warMavenPlugin.version>
 	</properties>
 	
@@ -292,7 +292,7 @@
 						<configuration>
 							<rules>
 								<requireMavenVersion>
-								<version>3.5.0</version>
+								<version>3.6.3</version>
 								</requireMavenVersion>
 							</rules>    
 						</configuration>
