@@ -68,7 +68,7 @@
                 <configuration>
                     <createJavaDocAnnotations>false</createJavaDocAnnotations>
 					<sources>
-						<source>src/main/java/es/udc/rs/deliveries/jaxrs/dto</source>
+						<source>src/main/java/es/udc/rs/orders/jaxrs/dto</source>
 					</sources>
                 </configuration>
                 <dependencies>
